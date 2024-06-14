@@ -1,0 +1,44 @@
+package busResv;
+import java.util.Scanner;
+import java.util.ArrayList;
+public class BusDemo {
+
+	public static void main(String[] args) {
+		ArrayList<Bus> buses = new ArrayList<Bus>(); //ArraryList -Collection
+		ArrayList<Booking> bookings = new ArrayList<Booking>();
+		
+		buses.add(new Bus(1,true,2)); // From Bus class it get constructor new Bus list will create BusNo, Ac, Capacity will add in the list 
+		buses.add(new Bus(2,false,40));
+		buses.add(new Bus(3,true, 48));
+		
+		
+		
+		int userOpt = 1; /* userOption 1 to to enter the booking */ 
+		@SuppressWarnings("resource")
+		Scanner scanner = new Scanner(System.in); /*Scanner used to scanner input and continue */
+		
+		for(Bus b: buses) { //Buses list object retrive  using for loop b stores object every itiration. Loop execute three time 
+			b.displayBusInfo(); // Bus information 
+		}
+		
+		
+		 while(userOpt==1) { /*loop used so that information will be displayed until user opt the selection */
+			System.out.println("Enter 1 to book and 2 to exit"); 
+			userOpt = scanner.nextInt();/* userOptin select next integer 1*/
+			if(userOpt == 1) { /* if loop execute and booking  initialize */
+				//System.out.println("Booking......");/*  booking */
+				Booking booking = new Booking(); // from passenger go to booking class to create constructor
+				if(booking.isAvailable(bookings,buses)) { // booking class method will be available
+					bookings.add(booking);
+					System.out.println("Your booking is confirmed");
+					
+				}
+				else
+					System.out.println("Sorry. Bus is full. Try another bus or date.");
+			}
+
+		}
+		
+	}
+
+}
